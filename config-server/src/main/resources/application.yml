@@ -11,3 +11,11 @@ spring:
           uri: https://github.com/alexi-ae/kafka-bank-system-core.git
           default-label: main
           search-paths: config-server-data
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,info   # Habilita múltiples endpoints
+  endpoint:
+    refresh:
+      enabled: true
