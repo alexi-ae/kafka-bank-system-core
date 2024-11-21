@@ -2,7 +2,7 @@ spring:
   application:
     name: registry
 server:
-  port: 8099
+  port: 8761  # Puerto por defecto para Eureka Server
 
 eureka:
   instance:
