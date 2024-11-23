@@ -26,6 +26,11 @@ spring:
       topic:
         user-update: user-update-topic
         account-create: account-create-topic
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB  # Configura el tamaño máximo del archivo individual
+      max-request-size: 20MB  # Configura el tamaño máximo de la solicitud completa
   cloud:
     discovery:
       enabled: true # Habilita la funcionalidad de descubrimiento
