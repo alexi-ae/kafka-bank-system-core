@@ -10,5 +10,7 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
+    service-url:
+      default-zone: http://registry:8761/eureka/
   server:
     enable-self-preservation: false
