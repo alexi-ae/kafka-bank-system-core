@@ -13,3 +13,12 @@ eureka:
       default-zone: http://registry:8761/eureka/
   server:
     enable-self-preservation: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,info   # Habilita múltiples endpoints
+  endpoint:
+    refresh:
+      enabled: true

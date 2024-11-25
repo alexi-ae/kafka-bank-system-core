@@ -47,4 +47,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: refresh,health,info   # Habilita múltiples endpoints
+  endpoint:
+    refresh:
+      enabled: true
