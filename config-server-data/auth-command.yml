@@ -3,12 +3,12 @@ server:
 spring:
   data:
     mongodb:
-      uri: ${SPRING_DATA_MONGODB_URI}
-      database: ${SPRING_DATA_MONGODB_DATABASE}
+      uri: mongodb://authdb:nosql@mongodb:27017
+      database: authdb
     redis:
-      host:  ${SPRING_REDIS_HOST}
-      port: ${SPRING_REDIS_PORT}
-      password: ${SPRING_REDIS_PASSWORD}
+      host:  redis
+      port: 6379
+      password: authdb
       timeout: 60000
   kafka:
     bootstrap-servers: localhost:9092
