@@ -2,7 +2,7 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/db-bank-system
+    url: jdbc:postgresql://customer-db:5432/db_customer
     username: userbanksystem
     password: sql
   jpa:
@@ -11,16 +11,16 @@ spring:
       ddl-auto: update
     show-sql: true
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
     consumer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: kafka:9092
       group-id: customer-group-id       # Nombre del grupo de consumidores
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       topic:
         customer-create: customer-create-topic
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: kafka:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       topic:
@@ -37,7 +37,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/ # Dirección del servidor Eureka
+      defaultZone: http://registry:8761/eureka/ # Dirección del servidor Eureka
     register-with-eureka: true # Permite registrarse en Eureka
     fetch-registry: true # Obtiene el registro de servicios de Eureka
   instance:
@@ -50,3 +50,12 @@ security:
   get:
     token:
       uri: /authenticate
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,info   # Habilita múltiples endpoints
+  endpoint:
+    refresh:
+      enabled: true
