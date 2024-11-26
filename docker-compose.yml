@@ -1,8 +1,9 @@
 version: "3.8"
 
 networks:
-  app-network:
+  bank-system-network:
     driver: bridge
+    name: bank-system-network
 
 services:
   # Config Server
@@ -16,7 +17,7 @@ services:
       - SPRING_PROFILES_ACTIVE=prod
       - SPRING_APPLICATION_NAME=config-server
     networks:
-      - app-network
+      - bank-system-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/actuator/health"]
       interval: 10s
@@ -37,7 +38,7 @@ services:
       - SPRING_APPLICATION_NAME=registry
       - CONFIG_SERVER_URL=http://config-server:9000
     networks:
-      - app-network
+      - bank-system-network
     depends_on:
       config-server:
         condition: service_healthy
@@ -59,7 +60,7 @@ services:
       - SPRING_APPLICATION_NAME=api-gateway
       - CONFIG_SERVER_URL=http://config-server:9000
     networks:
-      - app-network
+      - bank-system-network
     depends_on:
       registry:
         condition: service_healthy
